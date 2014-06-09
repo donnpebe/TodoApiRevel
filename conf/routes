@@ -1,0 +1,28 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+module:testrunner
+
+GET     /api/v1/tasks                           TasksController.List
+POST    /api/v1/tasks                           TasksController.Create
+GET     /api/v1/tasks/:id                       TasksController.Show
+PUT     /api/v1/tasks/:id                       TasksController.Update
+DELETE  /api/v1/tasks/:id                       TasksController.Delete
+PUT     /api/v1/tasks/:id/:status               TasksController.UpdateDone
+
+*       /api/v1/tasks                           ErrorsController.MethodNotAllowed
+*       /api/v1/tasks/:id                       ErrorsController.MethodNotAllowed
+*       /api/v1/tasks/:id/:status               ErrorsController.MethodNotAllowed
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/*filepath                       Static.Serve("public")
+
+
+
+
+# Catch all
+*       /*something                             ErrorsController.NotFound
